@@ -1,0 +1,125 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Pastebin API",
+    "version": ""
+  },
+  "host": "localhost:8000",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/api-token-auth/": {
+      "post": {
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "api-token-auth"
+        ],
+        "description": "API View that receives a POST with a user's username and password.\n\nReturns a JSON Web Token that can be used for authenticated requests.",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "data",
+            "schema": {
+              "properties": {
+                "username": {
+                  "description": "username",
+                  "type": "string"
+                },
+                "password": {
+                  "description": "password",
+                  "type": "string"
+                }
+              },
+              "type": "object",
+              "required": [
+                "username",
+                "password"
+              ]
+            }
+          }
+        ],
+        "summary": "API View that receives a POST with a user's username and password.",
+        "consumes": [
+          "application/json"
+        ],
+        "operationId": "api-token-auth_create"
+      }
+    },
+    "/api-token-refresh/": {
+      "post": {
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "api-token-refresh"
+        ],
+        "description": "API View that returns a refreshed token (with new expiration) based on\nexisting token\n\nIf 'orig_iat' field (original issued-at-time) is found, will first check\nif it's within expiration window, then copy it to the new token",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "data",
+            "schema": {
+              "properties": {
+                "token": {
+                  "description": "",
+                  "type": "string"
+                }
+              },
+              "type": "object",
+              "required": [
+                "token"
+              ]
+            }
+          }
+        ],
+        "summary": "API View that returns a refreshed token (with new expiration) based on",
+        "consumes": [
+          "application/json"
+        ],
+        "operationId": "api-token-refresh_create"
+      }
+    },
+    "/api/rest-auth/logout/": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "api"
+        ],
+        "description": "Calls Django logout method and delete the Token object\nassigned to the current User object.\n\nAccepts/Returns nothing.",
+        "parameters": [],
+        "summary": "Calls Django logout method and delete the Token object",
+        "operationId": "api_rest-auth_logout_list"
+      },
+      "post": {
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "api"
+        ],
+        "description": "Calls Django logout method and delete the Token object\nassigned to the current User object.\n\nAccepts/Returns nothing.",
+        "parameters": [],
+        "summary": "Calls Django logout method and delete the Token object",
+        "operationId": "api_rest-auth_logout_create"
+      }
+    }
+  },
+  "securityDefinitions": {
+    "basic": {
+      "type": "basic"
+    }
+  }
+}

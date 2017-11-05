@@ -1,0 +1,51 @@
+/* tslint:disable:max-line-length */
+/**
+ * Pastebin API
+ * localhost:8000undefined
+ */
+
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+
+import { ApiService } from '../services/api';
+
+export interface Api_rest-auth_logout_listParams {
+
+}
+
+export interface Api_rest-auth_logout_createParams {
+
+}
+
+@Injectable()
+export class ApiService {
+  constructor(private apiService: ApiService) {}
+
+  /**
+   * Calls Django logout method and delete the Token object
+   * Calls Django logout method and delete the Token object
+  assigned to the current User object.
+
+  Accepts/Returns nothing.
+   * http://localhost:8000undefined/swagger-ui.html#!/api/api_rest-auth_logout_list
+   */
+  api_rest-auth_logout_list(params: Api_rest-auth_logout_listParams): Observable<void> {
+    const queryParams: object = undefined;
+    return this.apiService.get(`/api/rest-auth/logout/`, queryParams);
+  }
+
+  /**
+   * Calls Django logout method and delete the Token object
+   * Calls Django logout method and delete the Token object
+  assigned to the current User object.
+
+  Accepts/Returns nothing.
+   * http://localhost:8000undefined/swagger-ui.html#!/api/api_rest-auth_logout_create
+   */
+  api_rest-auth_logout_create(params: Api_rest-auth_logout_createParams): Observable<void> {
+    const bodyParams: object = undefined;
+    const queryParams: object = undefined;
+    const formDataParams: {[key: string]: File} = undefined;
+    return this.apiService.post(`/api/rest-auth/logout/`, bodyParams, queryParams, formDataParams);
+  }
+}

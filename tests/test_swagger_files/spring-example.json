@@ -1,0 +1,2888 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "ACO DSA Portal API",
+    "version": "1.1.0-SNAPSHOT (build 423.424)",
+    "title": "Portal API",
+    "contact": {
+      "name": "Servodata Group a.s.",
+      "url": "http://www.example.com/"
+    }
+  },
+  "host": "http://www.example.com",
+  "basePath": "/example-web/api",
+  "tags": [
+    {
+      "name": "customer-rest-controller",
+      "description": "Customer management"
+    },
+    {
+      "name": "point-report-rest-controller",
+      "description": "Point report management"
+    },
+    {
+      "name": "parameter-rest-controller",
+      "description": "Parameters management"
+    },
+    {
+      "name": "assessment-version-rest-controller",
+      "description": "Assessment version management"
+    },
+    {
+      "name": "score-card-rest-controller",
+      "description": "ScoreCard management"
+    },
+    {
+      "name": "assessment-rest-controller",
+      "description": "Assessment management"
+    },
+    {
+      "name": "system-info-controller",
+      "description": "System info"
+    },
+    {
+      "name": "image-rest-controller",
+      "description": "Image management"
+    }
+  ],
+  "paths": {
+    "/assessments": {
+      "get": {
+        "tags": [
+          "assessment-rest-controller"
+        ],
+        "summary": "Get active assessments",
+        "operationId": "listActiveAssessmentsUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AssessmentDto"
+              }
+            }
+          },
+          "204": {
+            "description": "Assessment not found",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AssessmentDto"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/assessments/{assessmentId}/versions": {
+      "get": {
+        "tags": [
+          "assessment-rest-controller"
+        ],
+        "summary": "Create new assessment version",
+        "operationId": "listNewAssessmentVersionUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "assessmentId",
+            "in": "path",
+            "description": "assessmentId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Assessment version created",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AssessmentVersionDto"
+              }
+            }
+          },
+          "404": {
+            "description": "Assessment not found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "assessment-rest-controller"
+        ],
+        "summary": "Create new assessment version",
+        "operationId": "createNewAssessmentVersionUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "assessmentId",
+            "in": "path",
+            "description": "assessmentId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Assessment version created",
+            "schema": {
+              "$ref": "#/definitions/AssessmentDto"
+            }
+          },
+          "404": {
+            "description": "Assessment not found"
+          }
+        }
+      }
+    },
+    "/assessments/{plantId}": {
+      "post": {
+        "tags": [
+          "assessment-rest-controller"
+        ],
+        "summary": "Create new Assessment",
+        "operationId": "createAssessmentUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "plantId",
+            "in": "path",
+            "description": "plantId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Assessment created",
+            "schema": {
+              "$ref": "#/definitions/AssessmentDto"
+            }
+          },
+          "400": {
+            "description": "Assessment not created"
+          },
+          "404": {
+            "description": "Parameter for key not found"
+          }
+        }
+      }
+    },
+    "/customers/all": {
+      "get": {
+        "tags": [
+          "customer-rest-controller"
+        ],
+        "summary": "Get all customers",
+        "operationId": "listAllCustomersUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CustomerDto"
+              }
+            }
+          },
+          "204": {
+            "description": "Customers not found",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CustomerDto"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/customers/root": {
+      "get": {
+        "tags": [
+          "customer-rest-controller"
+        ],
+        "summary": "Get all root customers",
+        "operationId": "listAllRootCustomersUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CustomerDto"
+              }
+            }
+          },
+          "204": {
+            "description": "Customers not found",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CustomerDto"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/customers/{customerId}/childern": {
+      "get": {
+        "tags": [
+          "customer-rest-controller"
+        ],
+        "summary": "Get all customer children",
+        "operationId": "listChildrenCustomersUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "customerId",
+            "in": "path",
+            "description": "customerId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CustomerDto"
+              }
+            }
+          },
+          "204": {
+            "description": "Customers not found",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CustomerDto"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/customers/{customerId}/plants": {
+      "get": {
+        "tags": [
+          "customer-rest-controller"
+        ],
+        "summary": "Get all plants of customer",
+        "operationId": "listPlantUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "customerId",
+            "in": "path",
+            "description": "customerId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PlantDto"
+              }
+            }
+          },
+          "204": {
+            "description": "Plant not found",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PlantDto"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/customers/{customerId}/plants/{plantId}/halls": {
+      "get": {
+        "tags": [
+          "customer-rest-controller"
+        ],
+        "summary": "Get all halls of customer plant",
+        "operationId": "listHallUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "customerId",
+            "in": "path",
+            "description": "customerId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "plantId",
+            "in": "path",
+            "description": "plantId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/HallDto"
+              }
+            }
+          },
+          "204": {
+            "description": "Hall not found",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/HallDto"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "customer-rest-controller"
+        ],
+        "summary": "Create hall",
+        "operationId": "createHallUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "customerId",
+            "in": "path",
+            "description": "customerId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "plantId",
+            "in": "path",
+            "description": "plantId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "hallDto",
+            "description": "hallDto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/HallDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Hall created",
+            "schema": {
+              "$ref": "#/definitions/HallDto"
+            }
+          },
+          "404": {
+            "description": "Plant not found"
+          }
+        }
+      }
+    },
+    "/customers/{customerId}/plants/{plantId}/halls/{hallId}": {
+      "put": {
+        "tags": [
+          "customer-rest-controller"
+        ],
+        "summary": "Update hall",
+        "operationId": "updateHallUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "customerId",
+            "in": "path",
+            "description": "customerId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "plantId",
+            "in": "path",
+            "description": "plantId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "hallId",
+            "in": "path",
+            "description": "hallId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "hallDto",
+            "description": "hallDto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/HallDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Hall updated",
+            "schema": {
+              "$ref": "#/definitions/HallDto"
+            }
+          },
+          "404": {
+            "description": "Hall or plant not found"
+          }
+        }
+      }
+    },
+    "/customers/{customerId}/plants/{plantId}/halls/{hallId}/units": {
+      "get": {
+        "tags": [
+          "customer-rest-controller"
+        ],
+        "summary": "Get all units of hall",
+        "operationId": "listRootUnitsUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "customerId",
+            "in": "path",
+            "description": "customerId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "plantId",
+            "in": "path",
+            "description": "plantId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "hallId",
+            "in": "path",
+            "description": "hallId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/LogicalUnitDto"
+              }
+            }
+          },
+          "204": {
+            "description": "Hall not found",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/LogicalUnitDto"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "customer-rest-controller"
+        ],
+        "summary": "Create logical unit",
+        "operationId": "createUnitUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "customerId",
+            "in": "path",
+            "description": "customerId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "plantId",
+            "in": "path",
+            "description": "plantId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "hallId",
+            "in": "path",
+            "description": "hallId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "unitDto",
+            "description": "unitDto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LogicalUnitDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Logical unit created",
+            "schema": {
+              "$ref": "#/definitions/LogicalUnitDto"
+            }
+          },
+          "404": {
+            "description": "Hall not found"
+          }
+        }
+      }
+    },
+    "/customers/{customerId}/plants/{plantId}/halls/{hallId}/units/{unitId}": {
+      "put": {
+        "tags": [
+          "customer-rest-controller"
+        ],
+        "summary": "Update logical unit",
+        "operationId": "updateUnitUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "customerId",
+            "in": "path",
+            "description": "customerId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "plantId",
+            "in": "path",
+            "description": "plantId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "hallId",
+            "in": "path",
+            "description": "hallId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "unitId",
+            "in": "path",
+            "description": "unitId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "unitDto",
+            "description": "unitDto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LogicalUnitDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Logical unit created",
+            "schema": {
+              "$ref": "#/definitions/LogicalUnitDto"
+            }
+          },
+          "404": {
+            "description": "Hall or logical unit not found"
+          }
+        }
+      }
+    },
+    "/customers/{customerId}/plants/{plantId}/halls/{hallId}/units/{unitId}/children": {
+      "get": {
+        "tags": [
+          "customer-rest-controller"
+        ],
+        "summary": "Get all unit children",
+        "operationId": "listChildernUnitsUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "customerId",
+            "in": "path",
+            "description": "customerId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "plantId",
+            "in": "path",
+            "description": "plantId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "hallId",
+            "in": "path",
+            "description": "hallId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "unitId",
+            "in": "path",
+            "description": "unitId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/LogicalUnitDto"
+              }
+            }
+          },
+          "204": {
+            "description": "Hall not found",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/LogicalUnitDto"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/images/scorecard/{scoreCardId}": {
+      "post": {
+        "tags": [
+          "image-rest-controller"
+        ],
+        "summary": "Upload scorecard image",
+        "operationId": "uploadScoreCardImageUsingPOST",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "scoreCardId",
+            "in": "path",
+            "description": "scoreCardId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "file1",
+            "in": "formData",
+            "description": "file1",
+            "required": false,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Scorecard image uploaded",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "image-rest-controller"
+        ],
+        "summary": "Delete scorecard image",
+        "operationId": "deleteScoreCardImageUsingDELETE",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "scoreCardId",
+            "in": "path",
+            "description": "scoreCardId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Scorecard image deleted",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "404": {
+            "description": "Scorecard not found"
+          }
+        }
+      }
+    },
+    "/images/scorecard/{scoreCardId}/pointreports/{pointReportId}": {
+      "post": {
+        "tags": [
+          "image-rest-controller"
+        ],
+        "summary": "Upload point report images",
+        "operationId": "uploadPointReportImageUsingPOST",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "scoreCardId",
+            "in": "path",
+            "description": "scoreCardId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "pointReportId",
+            "in": "path",
+            "description": "pointReportId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "file1",
+            "in": "formData",
+            "description": "file1",
+            "required": false,
+            "type": "file"
+          },
+          {
+            "name": "file2",
+            "in": "formData",
+            "description": "file2",
+            "required": false,
+            "type": "file"
+          },
+          {
+            "name": "file3",
+            "in": "formData",
+            "description": "file3",
+            "required": false,
+            "type": "file"
+          },
+          {
+            "name": "file4",
+            "in": "formData",
+            "description": "file4",
+            "required": false,
+            "type": "file"
+          },
+          {
+            "name": "file5",
+            "in": "formData",
+            "description": "file5",
+            "required": false,
+            "type": "file"
+          },
+          {
+            "name": "file6",
+            "in": "formData",
+            "description": "file6",
+            "required": false,
+            "type": "file"
+          },
+          {
+            "name": "file7",
+            "in": "formData",
+            "description": "file7",
+            "required": false,
+            "type": "file"
+          },
+          {
+            "name": "file8",
+            "in": "formData",
+            "description": "file8",
+            "required": false,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Scorecard image uploaded",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/images/scorecard/{scoreCardId}/pointreports/{pointReportId}/{pointReportImageId}": {
+      "delete": {
+        "tags": [
+          "image-rest-controller"
+        ],
+        "summary": "Delete point report image",
+        "operationId": "deletePointReportImageUsingDELETE",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "scoreCardId",
+            "in": "path",
+            "description": "scoreCardId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "pointReportId",
+            "in": "path",
+            "description": "pointReportId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "pointReportImageId",
+            "in": "path",
+            "description": "pointReportImageId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Point report image deleted",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "404": {
+            "description": "Image not found"
+          }
+        }
+      }
+    },
+    "/parameters": {
+      "get": {
+        "tags": [
+          "parameter-rest-controller"
+        ],
+        "summary": "Get parameters by user-role",
+        "operationId": "listAllParametersUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ParameterDto"
+              }
+            }
+          },
+          "204": {
+            "description": "Parameters for user-role not found",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ParameterDto"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/parameters/update/{key}": {
+      "put": {
+        "tags": [
+          "parameter-rest-controller"
+        ],
+        "summary": "Update parameter",
+        "operationId": "updateParameterUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "key",
+            "in": "path",
+            "description": "key",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "IMAGE_PATH",
+              "SCORECARD_IMAGE_MAX_SIZE",
+              "POINT_REPORT_IMAGE_MAX_SIZE",
+              "LDAP_URL",
+              "LDAP_ROOT_DN",
+              "LDAP_MANAGER_DN",
+              "LDAP_MANAGER_PASSWORD",
+              "LDAP_SEARCH_BASE",
+              "LDAP_USER_FILTER",
+              "LDAP_GROUP_SEARCH_BASE_DN",
+              "LDAP_GROUP_SEARCH_FILTER"
+            ]
+          },
+          {
+            "name": "value",
+            "in": "query",
+            "description": "value",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ParameterDto"
+            }
+          },
+          "403": {
+            "description": "Only admin can update parameters"
+          },
+          "404": {
+            "description": "Parameter for key not found"
+          },
+          "417": {
+            "description": "New parameter value has wrong type"
+          }
+        }
+      }
+    },
+    "/parameters/{parameterKey}": {
+      "get": {
+        "tags": [
+          "parameter-rest-controller"
+        ],
+        "summary": "Get parameter by key",
+        "operationId": "getParameterUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "parameterKey",
+            "in": "path",
+            "description": "parameterKey",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "IMAGE_PATH",
+              "SCORECARD_IMAGE_MAX_SIZE",
+              "POINT_REPORT_IMAGE_MAX_SIZE",
+              "LDAP_URL",
+              "LDAP_ROOT_DN",
+              "LDAP_MANAGER_DN",
+              "LDAP_MANAGER_PASSWORD",
+              "LDAP_SEARCH_BASE",
+              "LDAP_USER_FILTER",
+              "LDAP_GROUP_SEARCH_BASE_DN",
+              "LDAP_GROUP_SEARCH_FILTER"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ParameterDto"
+            }
+          },
+          "403": {
+            "description": "Only admin can get this parameter"
+          },
+          "404": {
+            "description": "Parameter for key not found"
+          }
+        }
+      }
+    },
+    "/pointReports/{pointReportId}": {
+      "put": {
+        "tags": [
+          "point-report-rest-controller"
+        ],
+        "summary": "Update point report",
+        "operationId": "updatePointReportUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pointReportId",
+            "in": "path",
+            "description": "pointReportId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "pointReportDto",
+            "description": "pointReportDto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PointReportDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "point-report-rest-controller"
+        ],
+        "summary": "Delete point report",
+        "operationId": "deletePointUsingDELETE",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pointReportId",
+            "in": "path",
+            "description": "pointReportId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/pointReports/{pointReportId}/coords": {
+      "put": {
+        "tags": [
+          "point-report-rest-controller"
+        ],
+        "summary": "Update Point's coordinates",
+        "operationId": "updatePointCoordinatesUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pointReportId",
+            "in": "path",
+            "description": "pointReportId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "x",
+            "in": "query",
+            "description": "x",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "y",
+            "in": "query",
+            "description": "y",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/pointReports/{pointReportId}/pointIssue/{pointIssueId}": {
+      "put": {
+        "tags": [
+          "point-report-rest-controller"
+        ],
+        "summary": "Update point issue",
+        "operationId": "updatePointIssueUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pointIssueId",
+            "in": "path",
+            "description": "pointIssueId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "pointReportId",
+            "in": "path",
+            "description": "pointReportId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "pointIssueDto",
+            "description": "pointIssueDto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PointIssueDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/pointReports/{pointReportId}/pointIssues": {
+      "get": {
+        "tags": [
+          "point-report-rest-controller"
+        ],
+        "summary": "Get point report Issues",
+        "operationId": "getPointReportIssuesUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pointReportId",
+            "in": "path",
+            "description": "pointReportId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PointIssueDto"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "point-report-rest-controller"
+        ],
+        "summary": "Create new point issue",
+        "operationId": "createPointIssueUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pointReportId",
+            "in": "path",
+            "description": "pointReportId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "pointIssueDto",
+            "description": "pointIssueDto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PointIssueDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/PointIssueDto"
+            }
+          },
+          "404": {
+            "description": "Parameter for key not found"
+          }
+        }
+      }
+    },
+    "/scoreCards/{scoreCardId}": {
+      "get": {
+        "tags": [
+          "score-card-rest-controller"
+        ],
+        "summary": "Get score card by ID",
+        "operationId": "getScoreCardUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "scoreCardId",
+            "in": "path",
+            "description": "scoreCardId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ScoreCard found",
+            "schema": {
+              "$ref": "#/definitions/ScoreCardDetailDto"
+            }
+          },
+          "404": {
+            "description": "ScoreCard not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "score-card-rest-controller"
+        ],
+        "summary": "Update score card",
+        "operationId": "updateScoreCardUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "scoreCardId",
+            "in": "path",
+            "description": "scoreCardId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "scoreCard",
+            "description": "scoreCard",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ScoreCardDetailDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Score card updated",
+            "schema": {
+              "$ref": "#/definitions/ScoreCardDetailDto"
+            }
+          }
+        }
+      }
+    },
+    "/scoreCards/{scoreCardId}/image": {
+      "get": {
+        "tags": [
+          "score-card-rest-controller"
+        ],
+        "summary": "Return score card image",
+        "operationId": "scoreCardImageUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "scoreCardId",
+            "in": "path",
+            "description": "scoreCardId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ScoreCard image found",
+            "schema": {
+              "$ref": "#/definitions/Resource"
+            }
+          },
+          "404": {
+            "description": "ScoreCard or ScoreCard image not found"
+          }
+        }
+      }
+    },
+    "/scoreCards/{scoreCardId}/pointReports": {
+      "get": {
+        "tags": [
+          "score-card-rest-controller"
+        ],
+        "summary": "Get point reports for score card",
+        "operationId": "listPointReportUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "scoreCardId",
+            "in": "path",
+            "description": "scoreCardId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Point reports found",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PointReportDto"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/scoreCards/{scoreCardId}/points": {
+      "get": {
+        "tags": [
+          "score-card-rest-controller"
+        ],
+        "summary": "Get score card points",
+        "operationId": "getScoreCardPointsUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "scoreCardId",
+            "in": "path",
+            "description": "scoreCardId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/GeoPointDto"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "score-card-rest-controller"
+        ],
+        "summary": "Create new Point",
+        "operationId": "updatePointUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "scoreCardId",
+            "in": "path",
+            "description": "scoreCardId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "pointDto",
+            "description": "pointDto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PointDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/PointDto"
+            }
+          },
+          "404": {
+            "description": "Parameter for key not found"
+          }
+        }
+      }
+    },
+    "/scoreCards/{scoreCardId}/points/{pointId}/pointReports": {
+      "post": {
+        "tags": [
+          "score-card-rest-controller"
+        ],
+        "summary": "Create new point report",
+        "operationId": "createPointReportUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "scoreCardId",
+            "in": "path",
+            "description": "scoreCardId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "pointId",
+            "in": "path",
+            "description": "pointId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "zoneHygiene",
+            "in": "query",
+            "description": "zoneHygiene",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "LOW",
+              "MEDIUM",
+              "HIGH"
+            ]
+          },
+          {
+            "name": "zoneOperation",
+            "in": "query",
+            "description": "zoneOperation",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "LOW",
+              "MEDIUM",
+              "HIGH"
+            ]
+          },
+          {
+            "name": "zoneSafety",
+            "in": "query",
+            "description": "zoneSafety",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "LOW",
+              "MEDIUM",
+              "HIGH"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/PointReportDto"
+            }
+          },
+          "404": {
+            "description": "Parameter for key not found"
+          }
+        }
+      }
+    },
+    "/version": {
+      "get": {
+        "tags": [
+          "system-info-controller"
+        ],
+        "summary": "Get system info",
+        "operationId": "versionUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "System info returned",
+            "schema": {
+              "$ref": "#/definitions/Version"
+            }
+          }
+        }
+      }
+    },
+    "/versions/{assessmentVersionId}": {
+      "delete": {
+        "tags": [
+          "assessment-version-rest-controller"
+        ],
+        "summary": "Delete assessment version",
+        "operationId": "deactivateAssessmentVersionUsingDELETE",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "assessmentVersionId",
+            "in": "path",
+            "description": "assessmentVersionId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Assessment version deleted"
+          },
+          "400": {
+            "description": "Assessment version not deleted"
+          },
+          "404": {
+            "description": "Assessment version not found"
+          }
+        }
+      }
+    },
+    "/versions/{assessmentVersionId}/close": {
+      "put": {
+        "tags": [
+          "assessment-version-rest-controller"
+        ],
+        "summary": "Close assessment version",
+        "operationId": "closeAssessmentVersionUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "assessmentVersionId",
+            "in": "path",
+            "description": "assessmentVersionId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Assessment version closed"
+          },
+          "400": {
+            "description": "Assessment version not closed"
+          },
+          "404": {
+            "description": "Assessment version not found"
+          }
+        }
+      }
+    },
+    "/versions/{assessmentVersionId}/open": {
+      "put": {
+        "tags": [
+          "assessment-version-rest-controller"
+        ],
+        "summary": "Open assessment version",
+        "operationId": "openAssessmentVersionUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "assessmentVersionId",
+            "in": "path",
+            "description": "assessmentVersionId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Assessment version opened"
+          },
+          "400": {
+            "description": "Assessment version not opened"
+          },
+          "404": {
+            "description": "Assessment version not found"
+          }
+        }
+      }
+    },
+    "/versions/{assessmentVersionId}/scorecards": {
+      "get": {
+        "tags": [
+          "assessment-version-rest-controller"
+        ],
+        "summary": "Get score card for assessment version",
+        "operationId": "listScoreCardUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "assessmentVersionId",
+            "in": "path",
+            "description": "assessmentVersionId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ScoreCardDto"
+              }
+            }
+          },
+          "204": {
+            "description": "Assessment not found",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ScoreCardDto"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/versions/{assessmentVersionId}/scorecards/{unitId}": {
+      "post": {
+        "tags": [
+          "assessment-version-rest-controller"
+        ],
+        "summary": "Create new ScoreCard",
+        "operationId": "createScoreCardUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "assessmentVersionId",
+            "in": "path",
+            "description": "assessmentVersionId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "unitId",
+            "in": "path",
+            "description": "unitId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ScoreCard created",
+            "schema": {
+              "$ref": "#/definitions/ScoreCardDto"
+            }
+          },
+          "400": {
+            "description": "ScoreCard not created"
+          },
+          "404": {
+            "description": "Parameter for key not found"
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "Authorization": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "PointIssueDto": {
+      "type": "object",
+      "properties": {
+        "computedHygieneScoring": {
+          "type": "string",
+          "enum": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "NA"
+          ]
+        },
+        "computedOperationScoring": {
+          "type": "string",
+          "enum": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "NA"
+          ]
+        },
+        "computedSafetyScoring": {
+          "type": "string",
+          "enum": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "NA"
+          ]
+        },
+        "generalId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "hygieneRiskComment": {
+          "type": "string"
+        },
+        "hygieneScoring": {
+          "type": "string",
+          "enum": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "NA"
+          ]
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "issueCatalog": {
+          "$ref": "#/definitions/IssueCatalogSelectItem"
+        },
+        "issueCategory": {
+          "$ref": "#/definitions/IssueCategorySelectItem"
+        },
+        "operationRiskComment": {
+          "type": "string"
+        },
+        "operationScoring": {
+          "type": "string",
+          "enum": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "NA"
+          ]
+        },
+        "order": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "probableIssueCause": {
+          "type": "string"
+        },
+        "recommendedSolution": {
+          "type": "string"
+        },
+        "safetyRiskComment": {
+          "type": "string"
+        },
+        "safetyScoring": {
+          "type": "string",
+          "enum": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "NA"
+          ]
+        },
+        "severityLevel": {
+          "type": "string",
+          "enum": [
+            "LOW",
+            "MEDIUM",
+            "HIGH"
+          ]
+        },
+        "severityLevelDescription": {
+          "type": "string"
+        }
+      }
+    },
+    "GeoJsonProperty": {
+      "type": "object",
+      "properties": {
+        "color": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "objId": {
+          "type": "string"
+        }
+      }
+    },
+    "ScoreCardDetailDto": {
+      "type": "object",
+      "properties": {
+        "assessmentVersionId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "createTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "createdBy": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "index": {
+          "type": "string"
+        },
+        "logicalUnitId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "logicalUnitName": {
+          "type": "string"
+        },
+        "sectionScore": {
+          "type": "string",
+          "enum": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "NA"
+          ]
+        },
+        "summary": {
+          "type": "string"
+        },
+        "unitPath": {
+          "type": "string"
+        },
+        "zoneHygiene": {
+          "type": "string",
+          "enum": [
+            "LOW",
+            "MEDIUM",
+            "HIGH"
+          ]
+        },
+        "zoneOperation": {
+          "type": "string",
+          "enum": [
+            "LOW",
+            "MEDIUM",
+            "HIGH"
+          ]
+        },
+        "zoneSafety": {
+          "type": "string",
+          "enum": [
+            "LOW",
+            "MEDIUM",
+            "HIGH"
+          ]
+        }
+      }
+    },
+    "AttributeValueDto": {
+      "type": "object",
+      "properties": {
+        "attribute": {
+          "type": "string",
+          "enum": [
+            "DRAINAGE_TYPE",
+            "FLOOR_TYPE",
+            "INSIDE_CLEANING_PROCESS",
+            "OUTSIDE_CLEANING_METHOD",
+            "OPERATION_TYPE",
+            "ZONE_HYGIENE",
+            "ZONE_OPERATION",
+            "ZONE_SAFETY",
+            "DRAINAGE_CONNECTIVITY",
+            "DRAINED_LIQUID_CONCENTRATION",
+            "DRAINED_LIQUID_CHARACTERISTIC",
+            "DRAINED_LIQUID_TEMPERATURE",
+            "GRATING_TYPE",
+            "POINT_DEPTH",
+            "POINT_LENGTH",
+            "POINT_WIDTH",
+            "POINT_MATERIAL",
+            "POLLUTION_RATE",
+            "PRODUCTION_TYPE"
+          ]
+        },
+        "attributeType": {
+          "type": "string",
+          "enum": [
+            "NUMBER",
+            "TEXT",
+            "ENUM",
+            "ZONE_LEVEL",
+            "PRODUCTION_TYPE"
+          ]
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "parentValue": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "CustomerDto": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "id of customer"
+        },
+        "name": {
+          "type": "string",
+          "description": "customer name"
+        },
+        "parentId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "customer parent id"
+        },
+        "parentName": {
+          "type": "string",
+          "description": "customer parent name"
+        }
+      }
+    },
+    "AddressDto": {
+      "type": "object",
+      "properties": {
+        "addressType": {
+          "type": "string",
+          "description": "Address type",
+          "enum": [
+            "HOME",
+            "DELIVERY",
+            "HEADQUARTERS"
+          ]
+        },
+        "city": {
+          "type": "string",
+          "description": "City"
+        },
+        "country": {
+          "description": "Address country",
+          "$ref": "#/definitions/CountrySelectItem"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "address ID"
+        },
+        "street": {
+          "type": "string",
+          "description": "Street"
+        },
+        "zipCode": {
+          "type": "string",
+          "description": "Zip code"
+        }
+      }
+    },
+    "AssessmentDto": {
+      "type": "object",
+      "properties": {
+        "closed": {
+          "type": "boolean"
+        },
+        "completeness": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "createTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "createdBy": {
+          "type": "string"
+        },
+        "customerId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "lastVersion": {
+          "type": "boolean"
+        },
+        "plantId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "plantName": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "statusValue": {
+          "type": "string",
+          "enum": [
+            "BEFORE_CUSTOMER_REVIEW",
+            "AFTER_CUSTOMER_REVIEW",
+            "FINAL"
+          ]
+        },
+        "summaryDescription": {
+          "type": "string"
+        },
+        "versionDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "versionId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "description": "Assessment data"
+    },
+    "HallDto": {
+      "type": "object",
+      "properties": {
+        "attributes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AttributeValueDto"
+          }
+        },
+        "drainageCondition": {
+          "type": "string",
+          "description": "Drainage condition",
+          "enum": [
+            "OK",
+            "WORN",
+            "DAMAGED",
+            "CRITICAL"
+          ]
+        },
+        "drainageType": {
+          "$ref": "#/definitions/AttributeValueDto"
+        },
+        "floorCondition": {
+          "type": "string",
+          "description": "Floor condition",
+          "enum": [
+            "OK",
+            "WORN",
+            "DAMAGED",
+            "CRITICAL"
+          ]
+        },
+        "floorType": {
+          "$ref": "#/definitions/AttributeValueDto"
+        },
+        "hallId": {
+          "type": "string",
+          "description": "Hall identification"
+        },
+        "hallName": {
+          "type": "string",
+          "description": "Hall name"
+        },
+        "hallSize": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Hall size"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Hall ID"
+        },
+        "insideCleaningProcess": {
+          "$ref": "#/definitions/AttributeValueDto"
+        },
+        "operationType": {
+          "$ref": "#/definitions/AttributeValueDto"
+        },
+        "outsideCleaningMethod": {
+          "$ref": "#/definitions/AttributeValueDto"
+        },
+        "plantId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Plant ID"
+        },
+        "productionType": {
+          "$ref": "#/definitions/AttributeValueDto"
+        },
+        "temperatureCondition": {
+          "type": "string",
+          "description": "Temperature condition",
+          "enum": [
+            "HOT",
+            "STANDARD",
+            "COLD"
+          ]
+        },
+        "zoneHygiene": {
+          "$ref": "#/definitions/AttributeValueDto"
+        },
+        "zoneOperation": {
+          "$ref": "#/definitions/AttributeValueDto"
+        },
+        "zoneSafety": {
+          "$ref": "#/definitions/AttributeValueDto"
+        }
+      },
+      "description": "Hall data"
+    },
+    "IssueCategorySelectItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "order": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "PointDto": {
+      "type": "object",
+      "properties": {
+        "active": {
+          "type": "boolean"
+        },
+        "attributes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AttributeValueDto"
+          }
+        },
+        "drainageConnectivity": {
+          "$ref": "#/definitions/AttributeValueDto"
+        },
+        "drainageType": {
+          "$ref": "#/definitions/AttributeValueDto"
+        },
+        "drainedLiquidCharacteristic": {
+          "$ref": "#/definitions/AttributeValueDto"
+        },
+        "drainedLiquidConcentration": {
+          "$ref": "#/definitions/AttributeValueDto"
+        },
+        "drainedLiquidTemperature": {
+          "$ref": "#/definitions/AttributeValueDto"
+        },
+        "floorType": {
+          "$ref": "#/definitions/AttributeValueDto"
+        },
+        "gratingType": {
+          "$ref": "#/definitions/AttributeValueDto"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "insideCleaningProcess": {
+          "$ref": "#/definitions/AttributeValueDto"
+        },
+        "name": {
+          "type": "string"
+        },
+        "operationType": {
+          "$ref": "#/definitions/AttributeValueDto"
+        },
+        "outsideCleaningMethod": {
+          "$ref": "#/definitions/AttributeValueDto"
+        },
+        "pointDepth": {
+          "$ref": "#/definitions/AttributeValueDto"
+        },
+        "pointId": {
+          "type": "string"
+        },
+        "pointLength": {
+          "$ref": "#/definitions/AttributeValueDto"
+        },
+        "pointMaterial": {
+          "$ref": "#/definitions/AttributeValueDto"
+        },
+        "pointWidth": {
+          "$ref": "#/definitions/AttributeValueDto"
+        },
+        "pollutionRate": {
+          "$ref": "#/definitions/AttributeValueDto"
+        },
+        "productionType": {
+          "$ref": "#/definitions/AttributeValueDto"
+        },
+        "unitId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "zoneHygiene": {
+          "$ref": "#/definitions/AttributeValueDto"
+        },
+        "zoneOperation": {
+          "$ref": "#/definitions/AttributeValueDto"
+        },
+        "zoneSafety": {
+          "$ref": "#/definitions/AttributeValueDto"
+        }
+      }
+    },
+    "ParameterDto": {
+      "type": "object",
+      "properties": {
+        "dataType": {
+          "type": "string",
+          "description": "String representation of parameter data type"
+        },
+        "key": {
+          "type": "string",
+          "description": "Parameter key",
+          "enum": [
+            "IMAGE_PATH",
+            "SCORECARD_IMAGE_MAX_SIZE",
+            "POINT_REPORT_IMAGE_MAX_SIZE",
+            "LDAP_URL",
+            "LDAP_ROOT_DN",
+            "LDAP_MANAGER_DN",
+            "LDAP_MANAGER_PASSWORD",
+            "LDAP_SEARCH_BASE",
+            "LDAP_USER_FILTER",
+            "LDAP_GROUP_SEARCH_BASE_DN",
+            "LDAP_GROUP_SEARCH_FILTER"
+          ]
+        },
+        "value": {
+          "type": "string",
+          "description": "Parameter value"
+        }
+      },
+      "description": "Parameter data"
+    },
+    "CountrySelectItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "PointReportDto": {
+      "type": "object",
+      "properties": {
+        "coordinateX": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "coordinateY": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "description": {
+          "type": "string"
+        },
+        "drainingScoring": {
+          "type": "string",
+          "enum": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "NA"
+          ]
+        },
+        "floorScoring": {
+          "type": "string",
+          "enum": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "NA"
+          ]
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "point": {
+          "$ref": "#/definitions/PointDto"
+        },
+        "pointId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "problematic": {
+          "type": "boolean"
+        },
+        "summaryDescription": {
+          "type": "string"
+        },
+        "totalScoring": {
+          "type": "string",
+          "enum": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "NA"
+          ]
+        },
+        "zoneHygiene": {
+          "type": "string",
+          "enum": [
+            "LOW",
+            "MEDIUM",
+            "HIGH"
+          ]
+        },
+        "zoneOperation": {
+          "type": "string",
+          "enum": [
+            "LOW",
+            "MEDIUM",
+            "HIGH"
+          ]
+        },
+        "zoneSafety": {
+          "type": "string",
+          "enum": [
+            "LOW",
+            "MEDIUM",
+            "HIGH"
+          ]
+        }
+      }
+    },
+    "ScoreCardDto": {
+      "type": "object",
+      "properties": {
+        "assessmentVersionId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "createTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "createdBy": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "index": {
+          "type": "string"
+        },
+        "sectionScore": {
+          "type": "string",
+          "enum": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "NA"
+          ]
+        },
+        "unitPath": {
+          "type": "string"
+        }
+      }
+    },
+    "LogicalUnitDto": {
+      "type": "object",
+      "properties": {
+        "attributes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AttributeValueDto"
+          }
+        },
+        "drainageType": {
+          "$ref": "#/definitions/AttributeValueDto"
+        },
+        "extId": {
+          "type": "string",
+          "description": "External identification"
+        },
+        "floorType": {
+          "$ref": "#/definitions/AttributeValueDto"
+        },
+        "hallId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Hall ID"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Logical unit Id"
+        },
+        "insideCleaningProcess": {
+          "$ref": "#/definitions/AttributeValueDto"
+        },
+        "operationType": {
+          "$ref": "#/definitions/AttributeValueDto"
+        },
+        "outsideCleaningMethod": {
+          "$ref": "#/definitions/AttributeValueDto"
+        },
+        "parentUnitId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Parent logical unit ID"
+        },
+        "productionType": {
+          "$ref": "#/definitions/AttributeValueDto"
+        },
+        "unitId": {
+          "type": "string",
+          "description": "Logical unit identification"
+        },
+        "unitName": {
+          "type": "string",
+          "description": "Logical unit name"
+        },
+        "zoneHygiene": {
+          "$ref": "#/definitions/AttributeValueDto"
+        },
+        "zoneOperation": {
+          "$ref": "#/definitions/AttributeValueDto"
+        },
+        "zoneSafety": {
+          "$ref": "#/definitions/AttributeValueDto"
+        }
+      },
+      "description": "Logical unit data"
+    },
+    "GeoPointDto": {
+      "type": "object",
+      "properties": {
+        "geometry": {
+          "$ref": "#/definitions/PointGeometry"
+        },
+        "properties": {
+          "$ref": "#/definitions/GeoJsonProperty"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "Version": {
+      "type": "object",
+      "properties": {
+        "copyrightOwner": {
+          "type": "string"
+        },
+        "currentYear": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "implementationVersion": {
+          "type": "string"
+        },
+        "specificationVersion": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "vendorUrl": {
+          "type": "string"
+        }
+      },
+      "description": "ACO DSA Application Version"
+    },
+    "PointGeometry": {
+      "type": "object",
+      "properties": {
+        "coordinates": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Point",
+            "Polygon"
+          ]
+        }
+      }
+    },
+    "PlantDto": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "description": "plant address",
+          "$ref": "#/definitions/AddressDto"
+        },
+        "annualCapacity": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "annualProductionDays": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "attributes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AttributeValueDto"
+          }
+        },
+        "contactEmail": {
+          "type": "string"
+        },
+        "contactPerson": {
+          "type": "string",
+          "description": "Contact person name"
+        },
+        "contactPhone": {
+          "type": "string"
+        },
+        "customerId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Customer id"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "id of plant"
+        },
+        "plantName": {
+          "type": "string",
+          "description": "plant name"
+        },
+        "productionLinesNumber": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "productionType": {
+          "$ref": "#/definitions/AttributeValueDto"
+        },
+        "shiftNumber": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "shiftNumberPeriod": {
+          "type": "string",
+          "enum": [
+            "DAY",
+            "WEEK",
+            "MONTH"
+          ]
+        }
+      }
+    },
+    "IssueCatalogSelectItem": {
+      "type": "object",
+      "properties": {
+        "categoryId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "includeHygiene": {
+          "type": "boolean"
+        },
+        "includeOperations": {
+          "type": "boolean"
+        },
+        "includeSafety": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "order": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "AssessmentVersionDto": {
+      "type": "object",
+      "properties": {
+        "closed": {
+          "type": "boolean"
+        },
+        "createdBy": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "status": {
+          "type": "string"
+        },
+        "versionDate": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}

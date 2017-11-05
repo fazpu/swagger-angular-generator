@@ -6,12 +6,12 @@ import { Injectable } from '@angular/core';
 import { Headers, Http, RequestMethod, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
-import { environment } from '../../environments/environment';
+// import { environment } from '../../environments/environment';
 import { AuthService } from './auth';
 
 @Injectable()
 export class ApiService {
-  private apiUrl: string = environment.apiUrl;
+  private apiUrl: string = '';
 
   constructor(private http: Http, private authService: AuthService) {}
 

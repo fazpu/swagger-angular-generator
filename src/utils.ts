@@ -126,5 +126,5 @@ export function out(text: string | string[], color?: Color) {
   if (Array.isArray(text)) text = text.join('\n');
   if (color) text = `${termColors[color]}${text}`;
 
-  process.stdout.write(`${text}\n`);
+  // process.stdout.write(`${text}\n`);
 }

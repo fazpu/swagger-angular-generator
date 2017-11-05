@@ -6,6 +6,7 @@ Generate minimalistic TypeScript API layer with full type reflection of backend 
 
 ## Install
 
+1. `ensure you have at least node 8 installed`
 1. `npm i swagger-angular-generator --save-dev`
 1. check usage via `./node_modules/.bin/swagger-angular-generator -h`
 
@@ -107,3 +108,14 @@ export class MyComponent implements OnInit {
 1. ignoring params (on purpose)
     1. `header` globally
     1. `body` for `get` and `delete`
+    
+    
+## Development
+
+### Docker image
+1. `docker build . -t swagger-angular-generator`
+1. `docker-compose up -d`
+1. `docker exec -it swagger-angular-generator bash`
+1. `npm install`
+1. `npm run test`
+
