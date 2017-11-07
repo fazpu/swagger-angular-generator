@@ -1,0 +1,91 @@
+/* tslint:disable:max-line-length */
+/**
+ * ACO DSA Portal API
+ * 1.1.0-SNAPSHOT (build 423.424)
+ * Portal API
+ * http://www.example.com/
+ * http://www.example.com/example-web/api
+ */
+
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+
+import * as model from '../model';
+import { ApiService } from '../services/api';
+
+export interface ListNewAssessmentVersionUsingGETParams {
+  /**
+   * assessmentId
+   * format: int64
+   */
+  assessmentId: number;
+}
+
+export interface CreateNewAssessmentVersionUsingPOSTParams {
+  /**
+   * assessmentId
+   * format: int64
+   */
+  assessmentId: number;
+}
+
+export interface CreateAssessmentUsingPOSTParams {
+  /**
+   * plantId
+   * format: int64
+   */
+  plantId: number;
+}
+
+@Injectable()
+export class AssessmentService {
+  constructor(private apiService: ApiService) {}
+
+  /**
+   * Get active assessments
+   * http://http://www.example.com/example-web/api/swagger-ui.html#!/assessment-rest-controller/listActiveAssessmentsUsingGET
+   */
+  listActiveAssessmentsUsingGET(): Observable<model.AssessmentDto[]> {
+    return this.apiService.get(`/assessments`);
+  }
+
+  /**
+   * Create new assessment version
+   * http://http://www.example.com/example-web/api/swagger-ui.html#!/assessment-rest-controller/listNewAssessmentVersionUsingGET
+   */
+  listNewAssessmentVersionUsingGET(params: ListNewAssessmentVersionUsingGETParams): Observable<model.AssessmentVersionDto[]> {
+    const pathParams = {
+      assessmentId: params.assessmentId,
+    };
+    const queryParams: object = undefined;
+    return this.apiService.get(`/assessments/${pathParams.assessmentId}/versions`, queryParams);
+  }
+
+  /**
+   * Create new assessment version
+   * http://http://www.example.com/example-web/api/swagger-ui.html#!/assessment-rest-controller/createNewAssessmentVersionUsingPOST
+   */
+  createNewAssessmentVersionUsingPOST(params: CreateNewAssessmentVersionUsingPOSTParams): Observable<model.AssessmentDto> {
+    const pathParams = {
+      assessmentId: params.assessmentId,
+    };
+    const bodyParams: object = undefined;
+    const queryParams: object = undefined;
+    const formDataParams: {[key: string]: File} = undefined;
+    return this.apiService.post(`/assessments/${pathParams.assessmentId}/versions`, bodyParams, queryParams, formDataParams);
+  }
+
+  /**
+   * Create new Assessment
+   * http://http://www.example.com/example-web/api/swagger-ui.html#!/assessment-rest-controller/createAssessmentUsingPOST
+   */
+  createAssessmentUsingPOST(params: CreateAssessmentUsingPOSTParams): Observable<model.AssessmentDto> {
+    const pathParams = {
+      plantId: params.plantId,
+    };
+    const bodyParams: object = undefined;
+    const queryParams: object = undefined;
+    const formDataParams: {[key: string]: File} = undefined;
+    return this.apiService.post(`/assessments/${pathParams.plantId}`, bodyParams, queryParams, formDataParams);
+  }
+}

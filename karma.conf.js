@@ -1,7 +1,7 @@
 module.exports = function(config) {
     config.set({
 
-        frameworks: ["jasmine", "karma-typescript"],
+        frameworks: ["jasmine", "server-side", "karma-typescript"],
 
         files: [
             { pattern: "tests/**/*.ts" },
@@ -25,7 +25,8 @@ module.exports = function(config) {
                 flags: [
                     '--no-sandbox', // required to run without privileges in docker
                     '--user-data-dir=/tmp/chrome-test-profile',
-                    '--disable-web-security'
+                    '--disable-web-security',
+                    '-allow-file-access-from-files'
                 ]
             }
         }
