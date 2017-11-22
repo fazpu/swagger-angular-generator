@@ -37,7 +37,7 @@ The resulting API layer contains the following structure in the destination dire
 
 1. `def` directory stores all response interfaces and enums
 1. `model.ts` file reexports all of them together for a simple access
-1. `controllers` directory stores services containing all API methods devided by controllers
+1. `controllers` directory stores services containing all API methods divided by controllers
 
 When updating your code for new backend version, we recommend you to follow these steps:
 
